@@ -1,0 +1,6 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(run 2, Some(9c44bf86-b788-4c2f-b69d-3c27f1577b34), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yamada/Bureau/PPC PROJECT/Projet_code/target/scala-2.11/classes ...[0m
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 33 s, completed 25 mars 2024 à 09:33:13[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m

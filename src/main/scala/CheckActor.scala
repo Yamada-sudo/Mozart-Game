@@ -13,23 +13,21 @@ case class StatusUpdate(musiciansStatus: Map[Int, String], currentLeader: Option
 class CheckActor(parent: ActorRef) extends Actor {
   import context.dispatcher
 
-  // Demande les mises à jour dès le démarrage et périodiquement toutes les 10 secondes
-  override def preStart(): Unit = scheduleNextCheck()
-
-  def receive: Receive = {
-    case StatusUpdate(musiciansStatus, currentLeader) =>
-    val statusArray = Array.fill(4)(-1) // Remplacez 4 par le nombre de musiciens
-      musiciansStatus.foreach {
-        case (id, "en vie") if currentLeader.contains(id) => statusArray(id) = 1 // Chef et en vie
-        case (id, "en vie") => statusArray(id) = 0 // En vie mais pas chef
-        case _ => // Les cas restants sont déjà initialisés à -1
-      }
-      println(s"Statut des musiciens : ${statusArray.mkString("[", ",", "]")}")
-      scheduleNextCheck()
+    override def preStart(): Unit = {
+    context.system.scheduler.schedule(0.seconds, 10.seconds, self, PerformCheck)
   }
 
-  // Planifie le prochain check
-  private def scheduleNextCheck(): Unit = {
-    context.system.scheduler.scheduleOnce(10.seconds, parent, RequestStatusUpdate)
+  def receive: Receive = {
+    case PerformCheck =>
+      parent ! RequestStatusUpdate
+
+    case StatusUpdate(musiciansStatus, currentLeader) =>
+      val statusArray = Array.fill(4)(-1) // Assurez-vous que la taille correspond au nombre de musiciens
+      musiciansStatus.foreach {
+        case (id, "en vie") if currentLeader.contains(id) => statusArray(id) = 1 // Chef
+        case (id, "en vie") => statusArray(id) = 0 // En vie
+        case (id, "défaillant") => statusArray(id) = -1 // Défaillant
+      }
+      println(s"Statut des musiciens: ${statusArray.mkString("[", ", ", "]")}")
   }
 }

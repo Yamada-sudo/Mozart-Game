@@ -39,14 +39,6 @@ object Projet {
           val musicien = system.actorOf(Props(new Musicien(id, musicienlist)), "Musicien"+id)
 
           musicien ! Start
-
-          // import system.dispatcher // Importe le dispatcher par défaut pour utiliser 'scheduleOnce'
-          // import scala.concurrent.duration._
-
-          // system.scheduler.scheduleOnce(500.milliseconds) {
-          // // Simuler l'envoi de messages Alive de différents musiciens
-          //      musicien ! Alive(id) 
-          // }
      }
 
 }

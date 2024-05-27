@@ -1,13 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/yamada/Bureau/PPC PROJECT/Projet_code/src/main/scala/Musicien.scala:11:49: not found: type Terminal[0m
-[0m[[0m[31merror[0m] [0m[0mclass Musicien(val id: Int, val terminaux: List[Terminal]) extends Actor {[0m
-[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yamada/Bureau/PPC PROJECT/Projet_code/src/main/scala/Musicien.scala:14:44: not found: type DisplayActor[0m
-[0m[[0m[31merror[0m] [0m[0m  val displayActor = context.actorOf(Props[DisplayActor], name = "displayActor")[0m
-[0m[[0m[31merror[0m] [0m[0m                                           ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yamada/Bureau/PPC PROJECT/Projet_code/src/main/scala/Musicien.scala:15:45: not found: type HeartActor[0m
-[0m[[0m[31merror[0m] [0m[0m  val heart = context.actorOf(Props(classOf[HeartActor], self, terminaux, id), name = "heart")[0m
-[0m[[0m[31merror[0m] [0m[0m                                            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yamada/Bureau/PPC PROJECT/Projet_code/src/main/scala/Musicien.scala:25:30: value scheduleWithFixedDelay is not a member of akka.actor.Scheduler[0m
-[0m[[0m[31merror[0m] [0m[0m    context.system.scheduler.scheduleWithFixedDelay(0.seconds, 10.seconds, self, CheckMusicians)[0m
-[0m[[0m[31merror[0m] [0m[0m                             ^[0m
-[0m[[0m[31merror[0m] [0m[0mfour errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yamada/Bureau/PPC PROJECT/Projet_code/src/main/scala/Musicien.scala:103:61: not found: value CheckLeaderResponse[0m
+[0m[[0m[31merror[0m] [0m[0m    context.system.scheduler.scheduleOnce(15.seconds, self, CheckLeaderResponse)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                            ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

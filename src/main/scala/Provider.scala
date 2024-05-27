@@ -18,18 +18,32 @@ class Provider extends Actor {
     Array(90, 176, 7, 34, 67, 160, 52, 170), Array(25, 143, 64, 125, 76, 136, 1, 93), Array(138, 71, 150, 29, 101, 162, 23, 151),
     Array(16, 155, 57, 175, 43, 168, 89, 172), Array(120, 88, 48, 166, 51, 115, 72, 111), Array(65, 77, 19, 82, 137, 38, 149, 8),
     Array(102, 4, 31, 164, 144, 59, 173, 78), Array(35, 20, 108, 92, 12, 124, 44, 131))
-
+ 
+ 
   def receive: Receive = {
     case Provider.GetMeasure(diceResult) =>
-      val index = diceResult - 2
-      val bloc = (counter / 7) % 2 // Détermine le bloc actuel : 0 pour partie1, 1 pour partie2
-      val selectedPart = if (bloc == 0) partie1 else partie2
-      val measureNumber = selectedPart(index)(scala.util.Random.nextInt(selectedPart(index).length))
-      sender() ! measureNumber
-      counter += 1 // Incrémente le compteur après chaque appel
-  }
-}
+      // Déterminer le bloc actuel (partie1 ou partie2) basé sur le cycle des 16 mesures
+      val selectedPart = if ((counter / 8) % 2 == 0) partie1 else partie2
+      
+      // L'index dans le bloc actuel, basé sur le compteur
+      val indexInPart = counter % 8
+      
+      // Sélection de la mesure basée sur la somme des dés
+      val diceIndex = diceResult - 2
 
+      // Vérifier si l'index est dans la plage valide et envoyer la mesure correspondante
+      if (diceIndex >= 0 && diceIndex < selectedPart.length && indexInPart < selectedPart(diceIndex).length) {
+        val measureNumber = selectedPart(diceIndex)(indexInPart)
+        sender() ! measureNumber // Envoie le numéro de la mesure au musicien
+      } else {
+        sender() ! -1 // En cas d'erreur ou de données manquantes
+      }
+      
+      // Mettre à jour le compteur, en s'assurant qu'il cycle correctement entre 0 et 15
+      counter = (counter + 1) % 16
+  }
+
+}
 object Provider {
   case class GetMeasure(diceResult: Int)
 }

@@ -30,7 +30,7 @@ class HeartActor(parentActor: ActorRef, terminaux: List[Terminal], musicianId: I
     parentActor ! Alive(musicianId)
 
     // Planifie le prochain battement de coeur
-    context.system.scheduler.scheduleOnce(10.seconds) {
+    context.system.scheduler.scheduleOnce(5.seconds) {
       sendHeartbeat()
     }
   }

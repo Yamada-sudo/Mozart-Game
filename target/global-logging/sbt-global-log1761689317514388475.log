@@ -1,0 +1,11 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(run 2, Some(a1ed5c40-200c-4b04-a456-a6f7c626ffc0), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yamada/Bureau/PPC PROJECT/Projet_code/target/scala-2.11/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yamada/Bureau/PPC PROJECT/Projet_code/src/main/scala/Provider.scala:40:1: Unmatched closing brace '}' ignored here[0m
+[0m[[0m[31merror[0m] [0m[0m}[0m
+[0m[[0m[31merror[0m] [0m[0m^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mcompileIncremental[0m) Compilation failed[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 5 s, completed 24 mars 2024 à 04:15:41[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m
